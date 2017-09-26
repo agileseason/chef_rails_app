@@ -14,17 +14,14 @@ if app.node['secrets']
   end
 end
 
-if node['postgresql']
+if node['chef_rails_postgresql']
   chef_rails_app_database_yml "#{app.dir :shared}/config/database.yml" do
     app_env app.env
     app_user app.user
     app_group app.group
     database "#{app.name}_#{app.env}"
 
-    credentials = node['postgresql']['users']
-      .find { |v| v['username'] == database }
-
-    db_user credentials['username']
-    db_password credentials['password']
+    db_username node['chef_rails_postgresql']['username']
+    db_password node['chef_rails_postgresql']['password']
   end
 end
