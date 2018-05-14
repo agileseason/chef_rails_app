@@ -2,6 +2,8 @@ app = AppHelpers.new node['app']
 
 app.node['dirs'].each do |key, dir|
   next if key == 'root'
+  next unless dir
+
   mkdir dir
 end
 
