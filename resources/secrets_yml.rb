@@ -5,16 +5,16 @@ property :app_group
 property :secrets
 
 action :create do
-  template path do
+  template new_resource.path do
     source 'secrets.yml.erb'
 
     variables(
-      app_env: app_env,
-      secrets: JSON.parse(secrets.to_json, symbolize_names: true)
+      app_env: new_resource.app_env,
+      secrets: JSON.parse(new_resource.secrets.to_json, symbolize_names: true)
     )
 
-    owner app_user
-    group app_group
+    owner new_resource.app_user
+    group new_resource.app_group
     mode '0660'
   end if secrets
 end

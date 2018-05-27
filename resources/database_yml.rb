@@ -8,19 +8,19 @@ property :db_password
 property :db_host
 
 action :create do
-  template path do
+  template new_resource.path do
     source 'database.yml.erb'
 
     variables(
-      app_env: app_env,
-      database: database,
-      username: db_username,
-      password: db_password,
-      host: db_host
+      app_env: new_resource.app_env,
+      database: new_resource.database,
+      username: new_resource.db_username,
+      password: new_resource.db_password,
+      host: new_resource.db_host
     )
 
-    owner app_user
-    group app_group
+    owner new_resource.app_user
+    group new_resource.app_group
     mode '0660'
   end
 end
