@@ -5,6 +5,7 @@ property :app_group
 property :database
 property :db_username
 property :db_password
+property :db_host
 
 action :create do
   template path do
@@ -14,7 +15,8 @@ action :create do
       app_env: app_env,
       database: database,
       username: db_username,
-      password: db_password
+      password: db_password,
+      host: db_host
     )
 
     owner app_user
