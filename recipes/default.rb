@@ -25,6 +25,6 @@ if node['chef_rails_postgresql']
 
     db_username node['chef_rails_postgresql']['username']
     db_password node['chef_rails_postgresql']['password']
-    db_host node['chef_rails_postgresql']['host']
+    db_host node['chef_rails_postgresql']['listen_addresses']
   end
 end
