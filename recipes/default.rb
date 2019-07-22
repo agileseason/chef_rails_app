@@ -21,7 +21,7 @@ if node['chef_rails_postgresql']
     app_env app.env
     app_user app.user
     app_group app.group
-    database "#{app.name}_#{app.env}"
+    database node['chef_rails_postgresql']['database'] || "#{app.name}_#{app.env}"
 
     db_username node['chef_rails_postgresql']['username']
     db_password node['chef_rails_postgresql']['password']
